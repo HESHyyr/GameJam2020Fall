@@ -16,14 +16,20 @@ public class DialoguePanel : MonoBehaviour, IPointerDownHandler
     private PanelState currentPanelState = PanelState.inactive;
     private Coroutine popingTextCoroutine;
 
+    //For indicator icon
+    [Header("Indicator Setting")]
+    [SerializeField] float floatingDistance;
+    [SerializeField] float floatingSpeed;
+    private GameObject indicator;
+    private Vector3 indicatorInitialPosition;
+
     //UI Child
     private Text characterTextUI;
     private Text dialogueTextUI;
 
     //Components
     private AudioSource textPopingSoundSource;
-
-
+ 
 
     #endregion
 
@@ -31,13 +37,15 @@ public class DialoguePanel : MonoBehaviour, IPointerDownHandler
     {
         characterTextUI = transform.Find("CharacterText").GetComponent<Text>();
         dialogueTextUI = transform.Find("DialogueText").GetComponent<Text>();
+        indicator = transform.Find("Indicator").gameObject;
+        indicatorInitialPosition = indicator.transform.position;
         textPopingSoundSource = GetComponents<AudioSource>()[0];
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Update()
     {
-
+        if(indicator.activeInHierarchy)
+            indicator.transform.position = indicatorInitialPosition + new Vector3(0.0f, Mathf.Sin(Time.time * floatingSpeed) * floatingDistance, 0.0f);
     }
 
     //To-do: Should we add a fade-in fade-out effect for UI?
@@ -81,6 +89,7 @@ public class DialoguePanel : MonoBehaviour, IPointerDownHandler
 
     IEnumerator DisPlayDialogue(string dialogue)
     {
+        indicator.SetActive(false);
         currentPanelState = PanelState.popingText;
         dialogueTextUI.text = "";
         for (int i = 0; i < dialogue.Length; i++)
@@ -91,6 +100,7 @@ public class DialoguePanel : MonoBehaviour, IPointerDownHandler
             yield return new WaitForSeconds(0.1f);
         }
         currentPanelState = PanelState.idle;
+        indicator.SetActive(true);
     }
 
     #endregion
