@@ -4,7 +4,7 @@ using SpookuleleGames.StateMachine;
 using SpookuleleGames.SceneManagement;
 using GameJam2020;
 
-namespace FrickFrack.GameManagement
+namespace GameJam2020.GameManagement
 {
     public class GameStateManager : MonoBehaviour
     {
@@ -46,6 +46,11 @@ namespace FrickFrack.GameManagement
 
             Func<bool> MainMenuPlay() => () => mainMenu.PlayGame;
             
+        }
+
+        public static void SetState(IState state)
+        {
+            INSTANCE._gameStateMachine.SetState(state);
         }
     }
 }
