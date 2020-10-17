@@ -81,6 +81,8 @@ public class DialoguePanel : MonoBehaviour, IPointerDownHandler
             case PanelState.popingText:
                 StopCoroutine(popingTextCoroutine);
                 dialogueTextUI.text = dialogueArray[currentDialogueIndex];
+                currentPanelState = PanelState.idle;
+                indicator.SetActive(true);
                 break;
         }
     }
