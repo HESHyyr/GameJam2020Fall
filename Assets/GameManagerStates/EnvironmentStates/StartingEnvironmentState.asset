@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: StartingEnvironmentState
   m_EditorClassIdentifier: 
   environmentScene: {fileID: 11400000, guid: cd5ddd107c2b53c438ad0cffc9e27621, type: 2}
+  doors:
+  - travelSound: {fileID: 11400000, guid: 52a28811db9a50548bee0cdfc1bdbaca, type: 2}
+    destinationEnvironment: {fileID: 11400000, guid: 7204039f6cef3614f9b45555e3e3aabc,
+      type: 2}
