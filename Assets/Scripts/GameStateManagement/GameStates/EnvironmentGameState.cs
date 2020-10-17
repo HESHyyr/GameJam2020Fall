@@ -1,8 +1,10 @@
-﻿using SpookuleleGames.Audio;
+﻿using GameJam2020.GameManagement;
 using SpookuleleGames.SceneManagement;
-using SpookuleleGames.ServiceLocator;
 using SpookuleleGames.StateMachine;
+using SpookuleleGames.Audio;
 using UnityEngine;
+using System.Collections.Generic;
+using SpookuleleGames.ServiceLocator;
 
 namespace GameJam2020
 {
@@ -11,9 +13,17 @@ namespace GameJam2020
     public class EnvironmentGameState : GameState
     {
         [SerializeField] SceneData environmentScene;
-        protected override SceneData SceneData => environmentScene;
 
-        private PersistentSoundPlayer _musicPlayer;
+        [System.Serializable]
+        public struct Door
+        {
+            public SimpleOneShot travelSound;
+            public EnvironmentGameState destinationEnvironment;
+        }
+
+        [SerializeField] List<Door> doors;
+
+        protected override SceneData SceneData => environmentScene;
 
         public override void OnEnter(IState previous)
         {
@@ -28,12 +38,23 @@ namespace GameJam2020
         public override void OnExit(IState next)
         {
             base.OnExit(next);
-            _musicPlayer.FadeOut(1f);
         }
 
-        public void Exit()
+        public void LoadEnvironment()
         {
-            Application.Quit();
+            GameStateManager.SetState(this);
+        }
+
+        public void TryDoor(EnvironmentGameState destination)
+        {
+            for(int i = 0; i < doors.Count; i++)
+            {
+                if(doors[i].destinationEnvironment == destination)
+                {
+                    ServiceLocator.GetService<AudioManager>().PlayOneShot(doors[i].travelSound);
+                    doors[i].destinationEnvironment.LoadEnvironment();
+                }
+            }
         }
     }
 }

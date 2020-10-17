@@ -32,7 +32,7 @@ namespace GameJam2020 {
         public override void OnExit(IState next)
         {
             base.OnExit(next);
-            _musicPlayer.FadeOut(1f);
+            _musicPlayer.FadeOut(4f);
         }
 
         public void StartGame()
