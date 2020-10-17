@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19497326696bde04c97a0d6dbe80d079, type: 3}
   m_Name: Hallway
   m_EditorClassIdentifier: 
-  buildIndex: 3
+  buildIndex: 4
   scene: {fileID: 102900000, guid: 81c73357ef53b134db8c59a03a26db2b, type: 3}
   path: Assets/Scenes/GameScenes/SceneFiles/Hallway.unity

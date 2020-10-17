@@ -48,7 +48,7 @@ namespace SpookuleleGames.SceneManagement
 
             float t = 0f;
 
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.3f);
             
             while(t < 1.1f)
             {

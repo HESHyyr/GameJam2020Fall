@@ -45,6 +45,7 @@ namespace SpookuleleGames.ObjectPooling
 
         public GameObject Get()
         {
+            if (Pool == null) Init();
             if (Pool.Count == 0)
             {
                 CreateInstance();

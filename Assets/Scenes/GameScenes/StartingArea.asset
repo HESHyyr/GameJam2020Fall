@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19497326696bde04c97a0d6dbe80d079, type: 3}
   m_Name: StartingArea
   m_EditorClassIdentifier: 
-  buildIndex: 2
+  buildIndex: 3
   scene: {fileID: 102900000, guid: b3291957866148d4392a792ecfc8390b, type: 3}
   path: Assets/Scenes/GameScenes/SceneFiles/StartingArea.unity
