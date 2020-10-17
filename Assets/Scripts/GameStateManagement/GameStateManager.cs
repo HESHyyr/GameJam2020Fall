@@ -12,6 +12,7 @@ namespace FrickFrack.GameManagement
 
         //These all inherit from GameState, and contain some specialized state
         [SerializeField] private MainMenuGameState mainMenu;
+        [SerializeField] private EnvironmentGameState startingAreaEnvironmentState;
 
         private static GameStateManager INSTANCE;
 
@@ -37,8 +38,13 @@ namespace FrickFrack.GameManagement
         void Initialize()
         {
             _gameStateMachine = new StateMachine();
-            _gameStateMachine.SetState(mainMenu);
             void AT(IState to, IState from, Func<bool> predicate) => _gameStateMachine.AddTransition(to, from, predicate);
+            AT(mainMenu, startingAreaEnvironmentState, MainMenuPlay());
+
+
+            _gameStateMachine.SetState(mainMenu);
+
+            Func<bool> MainMenuPlay() => () => mainMenu.PlayGame;
             
         }
     }

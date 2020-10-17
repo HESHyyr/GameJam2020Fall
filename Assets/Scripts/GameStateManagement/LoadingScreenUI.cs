@@ -48,6 +48,8 @@ namespace SpookuleleGames.SceneManagement
 
             float t = 0f;
 
+            yield return new WaitForSeconds(.5f);
+            
             while(t < 1.1f)
             {
                 t += Time.deltaTime;

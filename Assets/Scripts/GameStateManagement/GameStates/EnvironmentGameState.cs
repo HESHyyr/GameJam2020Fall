@@ -4,29 +4,25 @@ using SpookuleleGames.ServiceLocator;
 using SpookuleleGames.StateMachine;
 using UnityEngine;
 
-namespace GameJam2020 {
+namespace GameJam2020
+{
 
-    [CreateAssetMenu(fileName = "NewMenuState", menuName = "GameManagement/MenuState")]
-    public class MainMenuGameState : GameState
+    [CreateAssetMenu(menuName = "GameManagement/EnvironmentState")]
+    public class EnvironmentGameState : GameState
     {
-        [SerializeField] SceneData mainMenuScene;
-        protected override SceneData SceneData => mainMenuScene;
-
-        [SerializeField] private SimplePersistentSound mainMenuMusic;
-        public bool PlayGame { get; private set; }
+        [SerializeField] SceneData environmentScene;
+        protected override SceneData SceneData => environmentScene;
 
         private PersistentSoundPlayer _musicPlayer;
 
         public override void OnEnter(IState previous)
         {
             base.OnEnter(previous);
-            PlayGame = false;
         }
 
         protected override void OnSceneLoaded()
         {
             base.OnSceneLoaded();
-            _musicPlayer = ServiceLocator.GetService<AudioManager>().PlayPersistentSound(mainMenuMusic);
         }
 
         public override void OnExit(IState next)
@@ -35,11 +31,6 @@ namespace GameJam2020 {
             _musicPlayer.FadeOut(1f);
         }
 
-        public void StartGame()
-        {
-            Debug.Log("PLAY!");
-            PlayGame = true;
-        }
         public void Exit()
         {
             Application.Quit();
