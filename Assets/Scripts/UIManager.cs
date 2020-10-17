@@ -12,18 +12,6 @@ public class UIManager : MonoBehaviour
     //To-do Possibly change this to canControl for playercontroller and use that there
     private bool canFadeScreen = true;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void FadingBlackScreen()
     {
         StartCoroutine(waitForBlackScreen());
