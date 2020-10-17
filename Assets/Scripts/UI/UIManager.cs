@@ -9,12 +9,32 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image blackScreenImage = default;
     [SerializeField] float speedOfFading = default;
 
+    //Varaiable for testing purpose
+    [SerializeField] private string[] testDialogueArray = default;
+
     //To-do Possibly change this to canControl for playercontroller and use that there
     private bool canFadeScreen = true;
+
+    private GameObject dialoguePanel;
+    private DialoguePanel dialoguePanelScript;
+
+    void Start()
+    {
+        dialoguePanel = transform.Find("DialoguePanel").gameObject;
+        dialoguePanelScript = dialoguePanel.gameObject.GetComponent<DialoguePanel>();
+    }
 
     public void FadingBlackScreen()
     {
         StartCoroutine(waitForBlackScreen());
+    }
+
+    //Function for testing button callback
+    public void TestDialogue()
+    {
+        dialoguePanel.SetActive(true);
+        int RN = Random.Range(0, 10);
+        dialoguePanelScript.StartDialogue("Random dude " + RN, testDialogueArray);
     }
 
     IEnumerator waitForBlackScreen()
