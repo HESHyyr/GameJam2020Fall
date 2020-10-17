@@ -10,6 +10,7 @@ namespace GameJam2020 {
     public class MainMenuGameState : GameState
     {
         [SerializeField] SceneData mainMenuScene;
+        [SerializeField] Inventory playerInventory;
         protected override SceneData SceneData => mainMenuScene;
 
         [SerializeField] private SimplePersistentSound mainMenuMusic;
@@ -32,7 +33,7 @@ namespace GameJam2020 {
         public override void OnExit(IState next)
         {
             base.OnExit(next);
-            _musicPlayer.FadeOut(2f);
+            playerInventory.ClearInventory();
         }
 
         public void StartGame()

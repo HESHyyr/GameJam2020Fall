@@ -1,5 +1,6 @@
 ﻿using SpookuleleGames.ObjectPooling;
 using SpookuleleGames.ServiceLocator;
+using SpookuleleGames.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,9 +13,13 @@ namespace SpookuleleGames.Audio
 
         [SerializeField] private ObjectPool oneShotPool;
         [SerializeField] private ObjectPool persistentSoundPool;
+
+        private Dictionary<IPersistentSound, PersistentSoundPlayer> activePersistentSounds;
+
         public void Init() {
             oneShotPool.Init();
             persistentSoundPool.Init();
+            activePersistentSounds = new Dictionary<IPersistentSound, PersistentSoundPlayer>();
         }
 
         public void PlayOneShot(IOneShot oneShot)
@@ -36,7 +41,13 @@ namespace SpookuleleGames.Audio
             float pitch = Random.Range(persistentSound.MinPitch, persistentSound.MaxPitch);
             soundPlayer.Init(clip, volume, pitch);
 
+            activePersistentSounds.Add(persistentSound, soundPlayer);
+            MethodDelayer.DelayMethodByPredicateAsync(() => activePersistentSounds.Remove(persistentSound), ()=>soundPlayer.gameObject.activeSelf == false);
             return soundPlayer;
         }
+
+        public bool TryGetPersistentSound(IPersistentSound persistentSound, out PersistentSoundPlayer player)
+        => activePersistentSounds.TryGetValue(persistentSound, out player);
+        
     }
 }

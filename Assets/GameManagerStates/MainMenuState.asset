@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: MainMenuState
   m_EditorClassIdentifier: 
   mainMenuScene: {fileID: 11400000, guid: 95ad2f39ec4e80e4a9b5d6a184f9f09f, type: 2}
+  playerInventory: {fileID: 11400000, guid: 1e11d137a82975247b7d9b882286a4e1, type: 2}
   mainMenuMusic: {fileID: 11400000, guid: 537cc07d0a3f0c640a5c22f4eaccb8de, type: 2}

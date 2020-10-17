@@ -8,6 +8,7 @@ namespace GameJam2020
         [SerializeField] private new string name;
         [SerializeField] private string description;
 
+
         public string Name => name;
         public string Description => description;
 
