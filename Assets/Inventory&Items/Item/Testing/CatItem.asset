@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f4c247d2fbab8041a3d43f70f52b87a, type: 3}
-  m_Name: PlayerInventory
+  m_Script: {fileID: 11500000, guid: 30c5c1b1a82ae6249806bead5f44b54e, type: 3}
+  m_Name: CatItem
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: cbe899839ee85b74b8e8a798e6e3c9f6, type: 2}
-  - {fileID: 11400000, guid: a9044f50073a7a0469a2a069f6be9fc5, type: 2}
+  name: Cat
+  description: This is a cat
+  sprite: {fileID: 21300000, guid: 693940cafa0335b4293b05c8d016d297, type: 3}

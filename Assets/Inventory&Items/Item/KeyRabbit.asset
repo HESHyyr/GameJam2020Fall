@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30c5c1b1a82ae6249806bead5f44b54e, type: 3}
-  m_Name: RustyKey
+  m_Name: KeyRabbit
   m_EditorClassIdentifier: 
-  name: Rusty Key
-  description: A strangely rusted key.
-  sprite: {fileID: 21300000, guid: 693940cafa0335b4293b05c8d016d297, type: 3}
+  name: KeyRabbit
+  description: A rabbit form key
+  sprite: {fileID: 21300000, guid: e57b2a7b40d27de4ea6bb9c393fdb504, type: 3}
