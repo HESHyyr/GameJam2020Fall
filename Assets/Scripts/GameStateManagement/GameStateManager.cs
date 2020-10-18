@@ -13,7 +13,7 @@ namespace GameJam2020.GameManagement
         //These all inherit from GameState, and contain some specialized state
         [SerializeField] private MainMenuGameState mainMenu;
         [SerializeField] private BasicGameState gameStart;
-        [SerializeField] private EnvironmentGameState startingAreaEnvironmentState;
+        [SerializeField] private EnvironmentGameState startingAreaEnvironment;
 
         private static GameStateManager INSTANCE;
 
@@ -41,10 +41,10 @@ namespace GameJam2020.GameManagement
             _gameStateMachine = new StateMachine();
             void AT(IState to, IState from, Func<bool> predicate) => _gameStateMachine.AddTransition(to, from, predicate);
             AT(mainMenu, gameStart, MainMenuPlay());
-            AT(gameStart, startingAreaEnvironmentState, GameStartPlay());
+            AT(gameStart, startingAreaEnvironment, GameStartPlay());
 
 
-            _gameStateMachine.SetState(mainMenu);
+            _gameStateMachine.SetState(startingAreaEnvironment);
 
             Func<bool> MainMenuPlay() => () => mainMenu.PlayGame;
             Func<bool> GameStartPlay() => () => gameStart.StateEnd;

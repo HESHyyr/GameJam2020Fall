@@ -40,6 +40,7 @@ namespace GameJam2020 {
         {
             Debug.Log("PLAY!");
             PlayGame = true;
+            _musicPlayer.FadeOut(2f);
         }
         public void Exit()
         {
