@@ -687,7 +687,8 @@ MonoBehaviour:
     SerializationNodes: []
   gameObjectServices:
   - {fileID: 1296766133}
-  scriptableObjectServices: []
+  scriptableObjectServices:
+  - {fileID: 11400000, guid: 1e11d137a82975247b7d9b882286a4e1, type: 2}
 --- !u!4 &975550245
 Transform:
   m_ObjectHideFlags: 0

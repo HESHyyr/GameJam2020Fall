@@ -303,7 +303,7 @@ PrefabInstance:
     - target: {fileID: 5310319023116654942, guid: 8e1dec25340eae342b798cb2c6482703,
         type: 3}
       propertyPath: m_text
-      value: Hallway
+      value: Restroom
       objectReference: {fileID: 0}
     - target: {fileID: 5310319023276809478, guid: 8e1dec25340eae342b798cb2c6482703,
         type: 3}
@@ -543,6 +543,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7324664323951797371, guid: 008ff30b0a25cdb4a909c5ca8831cefa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 357d4dae98e81b444ae5674e77d3b3d4,
+        type: 2}
+    - target: {fileID: 7324664323951797371, guid: 008ff30b0a25cdb4a909c5ca8831cefa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TryDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324664323951797371, guid: 008ff30b0a25cdb4a909c5ca8831cefa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 2d952dd8c46a7444fab49e37000acdf2,
+        type: 2}
     - target: {fileID: 7324664323951797372, guid: 008ff30b0a25cdb4a909c5ca8831cefa,
         type: 3}
       propertyPath: m_AnchoredPosition.x
