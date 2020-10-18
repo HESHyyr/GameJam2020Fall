@@ -12,7 +12,8 @@ public class InventoryPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [SerializeField] private float iterationWaitTime;
     [SerializeField] private Inventory inventory;
 
-    [HideInInspector] public Transform inventoryListUI;
+    [HideInInspector] public RectTransform inventoryListUI;
+    private float inventoryMovementIncrement;
     [HideInInspector] public int selectedItemIndex;
     private Transform selectionBoxTransform;
 
@@ -20,11 +21,12 @@ public class InventoryPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     // Start is called before the first frame update
     void Start()
     {
-        inventoryListUI = transform.Find("InventoryListUI");
+        inventoryListUI = transform.Find("InventoryListUI").GetComponent<RectTransform>();
         selectionBoxTransform = transform.Find("SelectionBox");
         for (int i = 0; i < inventory.Items.Count; i++)
             ChangeImage(i, inventory.Items[i].Sprite);
 
+        inventoryMovementIncrement = Mathf.Abs(inventoryListUI.anchoredPosition.x) * 2.0f / iterationNumber;
         selectedItemIndex = -1;
     }
 
@@ -62,11 +64,10 @@ public class InventoryPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private IEnumerator ShowInventory(bool shouldDisplayInventory)
     {
-        float inventoryTransformIncreament = 380 / iterationNumber;
 
         for(int i = 0; i < (int)iterationNumber; i++)
         {
-            inventoryListUI.localPosition = inventoryListUI.localPosition + new Vector3(shouldDisplayInventory ? inventoryTransformIncreament : -inventoryTransformIncreament, 0.0f, 0.0f);
+            inventoryListUI.localPosition = inventoryListUI.localPosition + new Vector3(shouldDisplayInventory ? inventoryMovementIncrement : -inventoryMovementIncrement, 0.0f, 0.0f);
             yield return new WaitForSeconds(iterationWaitTime);
         }
     }
@@ -74,6 +75,8 @@ public class InventoryPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private void ChangeImage(int imageIndex, Sprite resultImage)
     {
         inventoryListUI.GetChild(imageIndex).gameObject.GetComponent<Image>().sprite = resultImage;
+        if (resultImage != null)
+            inventoryListUI.GetChild(imageIndex).gameObject.GetComponent<Image>().rectTransform.sizeDelta = new Vector2(resultImage.rect.size.x / 512 * 40, resultImage.rect.size.y / 512 * 40);
     }
 
 

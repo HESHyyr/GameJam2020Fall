@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30c5c1b1a82ae6249806bead5f44b54e, type: 3}
   m_Name: Candle
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  sprite: {fileID: 0}
+  name: Candle
+  description: Need something to light up this candle
+  sprite: {fileID: 21300000, guid: fa2b7e0b854765341bdfe1fe9e917ce8, type: 3}
