@@ -2,43 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class InventoryPanel : MonoBehaviour
+public class InventoryPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [HideInInspector] public static InventoryPanel instance;
+    [Header("Inventory Setting")]
+    [SerializeField] private float iterationNumber;
+    [SerializeField] private float iterationWaitTime;
+
     private Transform inventoryListUI;
-    private Transform inventoryListItem;
 
     
     // Start is called before the first frame update
     void Start()
     {
-        //Since inventory is passed between scenes, we might want to use the sigleten pattern
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(this.gameObject);
-
-        DontDestroyOnLoad(this);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        inventoryListUI = transform.Find("InventoryListUI");
     }
 
     public void AddItemToInventory()
     {
-        if(inventoryListItem.childCount > 4)
-        {
-            //Do we really want to have so many items?
-            Debug.Log("Reach Max Size");
-            return;
-        }
-
 
     }
 
-    
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        StartCoroutine(ShowInventory(true));
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        StartCoroutine(ShowInventory(false));
+    }
+
+    private IEnumerator ShowInventory(bool shouldDisplayInventory)
+    {
+        float inventoryTransformIncreament = 600 / iterationNumber;
+
+        for(int i = 0; i < (int)iterationNumber; i++)
+        {
+            inventoryListUI.localPosition = inventoryListUI.localPosition + new Vector3(shouldDisplayInventory ? inventoryTransformIncreament : -inventoryTransformIncreament, 0.0f, 0.0f);
+            yield return new WaitForSeconds(iterationWaitTime);
+        }
+    }
+
+
 }
