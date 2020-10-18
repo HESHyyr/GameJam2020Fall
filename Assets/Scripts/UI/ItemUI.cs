@@ -7,11 +7,13 @@ using UnityEngine.EventSystems;
 public class ItemUI : MonoBehaviour, IPointerClickHandler
 {
     private InventoryPanel InventoryUIManager;
+    private int currentItemIndex;
 
     // Start is called before the first frame update
     void Start()
     {
         InventoryUIManager = transform.parent.parent.GetComponent<InventoryPanel>();
+        currentItemIndex = transform.GetSiblingIndex();
     }
 
     // Update is called once per frame
@@ -22,21 +24,47 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData pointerEventData)
     {
-        if(GetComponent<Image>().sprite != null)
+        if(pointerEventData.button == PointerEventData.InputButton.Left)
         {
-            int currentItemIndex = transform.GetSiblingIndex();
-            if (InventoryUIManager.selectedItemIndex == -1)
-                InventoryUIManager.selectedItemIndex = currentItemIndex;
-            else
+            if (GetComponent<Image>().sprite != null)
             {
-                //Compare "selectedItemIndex" & "currentItemIndex" to see if they can be combined
-                if (false)
+                int currentItemIndex = transform.GetSiblingIndex();
+                if (InventoryUIManager.selectedItemIndex == -1)
+                    SelectCurrentImage();
+
+                else
                 {
+                    //Compare "selectedItemIndex" & "currentItemIndex" to see if they can be combined
+                    if (false)
+                    {
+
+                    }
+                    else
+                        SelectCurrentImage();
 
                 }
-                else
-                    InventoryUIManager.selectedItemIndex = currentItemIndex;
             }
         }
+        else if(pointerEventData.button == PointerEventData.InputButton.Right)
+        {
+            if(InventoryUIManager.selectedItemIndex == currentItemIndex)
+            {
+                InventoryUIManager.selectedItemIndex = -1;
+                //Calculate the image's original position
+                transform.parent = InventoryUIManager.inventoryListUI;
+                transform.SetSiblingIndex(currentItemIndex);
+                Debug.Log(transform.GetSiblingIndex());
+                transform.GetComponent<RectTransform>().localPosition = new Vector2(-140.5f + 40 * transform.GetSiblingIndex(), 0.0f);
+            }
+        }
+
+
+    }
+
+    public void SelectCurrentImage()
+    {
+        InventoryUIManager.selectedItemImage = transform;
+        transform.parent = InventoryUIManager.transform.parent;
+        InventoryUIManager.selectedItemIndex = currentItemIndex;
     }
 }

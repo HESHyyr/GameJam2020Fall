@@ -15,26 +15,26 @@ public class InventoryPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [HideInInspector] public RectTransform inventoryListUI;
     private float inventoryMovementIncrement;
     [HideInInspector] public int selectedItemIndex;
-    private Transform selectionBoxTransform;
+    [HideInInspector] public Transform selectedItemImage;
 
     
     // Start is called before the first frame update
     void Start()
     {
         inventoryListUI = transform.Find("InventoryListUI").GetComponent<RectTransform>();
-        selectionBoxTransform = transform.Find("SelectionBox");
         for (int i = 0; i < inventory.Items.Count; i++)
             ChangeImage(i, inventory.Items[i].Sprite);
 
         inventoryMovementIncrement = Mathf.Abs(inventoryListUI.anchoredPosition.x) * 2.0f / iterationNumber;
+
+        //We need to reset to -1 everytime we drop an item
         selectedItemIndex = -1;
     }
 
     void Update()
     {
-        if (selectedItemIndex != -1)
-            selectionBoxTransform.position = inventoryListUI.GetChild(selectedItemIndex).position;
-            
+        if(selectedItemImage != null && selectedItemIndex >= 0)
+            selectedItemImage.position = Input.mousePosition;
     }
 
     public void AddItemToInventory(Item item)
