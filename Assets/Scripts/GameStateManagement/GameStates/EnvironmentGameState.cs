@@ -17,6 +17,7 @@ namespace GameJam2020
         [System.Serializable]
         public struct Door
         {
+            public Item requiredItem;
             public SimpleOneShot travelSound;
             public EnvironmentGameState destinationEnvironment;
         }
@@ -47,6 +48,7 @@ namespace GameJam2020
 
         public void TryDoor(EnvironmentGameState destination)
         {
+
             for(int i = 0; i < doors.Count; i++)
             {
                 if(doors[i].destinationEnvironment == destination)

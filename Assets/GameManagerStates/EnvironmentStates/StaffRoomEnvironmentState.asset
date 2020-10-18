@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247a9aa25bfca5e49a633d7a9c510d02, type: 3}
+  m_Name: StaffRoomEnvironmentState
+  m_EditorClassIdentifier: 
+  environmentScene: {fileID: 11400000, guid: 419c56df674207147ac629a26f920baf, type: 2}
+  doors:
+  - travelSound: {fileID: 11400000, guid: 52a28811db9a50548bee0cdfc1bdbaca, type: 2}
+    destinationEnvironment: {fileID: 11400000, guid: 7204039f6cef3614f9b45555e3e3aabc,
+      type: 2}

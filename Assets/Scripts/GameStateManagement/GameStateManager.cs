@@ -44,7 +44,7 @@ namespace GameJam2020.GameManagement
             AT(gameStart, startingAreaEnvironment, GameStartPlay());
 
 
-            _gameStateMachine.SetState(startingAreaEnvironment);
+            _gameStateMachine.SetState(mainMenu);
 
             Func<bool> MainMenuPlay() => () => mainMenu.PlayGame;
             Func<bool> GameStartPlay() => () => gameStart.StateEnd;

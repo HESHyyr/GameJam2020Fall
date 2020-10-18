@@ -1,15 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using SpookuleleGames.ServiceLocator;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameJam2020
 {
     [CreateAssetMenu(menuName = "Inventory&Items/Inventory")]
-    public class Inventory : ScriptableObject
+    public class Inventory : ScriptableObject, IService
     {
         [SerializeField] private List<Item> items = new List<Item>();
         private List<Item> trash = new List<Item>();
 
         public List<Item> Items => items;
+
+        public int Priority => 0;
 
         public void AddItem(Item item)
         {
@@ -26,9 +29,11 @@ namespace GameJam2020
             trash.Add(item);
         }
 
-        public void ClearInventory()
+        public void ClearInventory(bool alsoClearTrash = true)
         {
             items.Clear();
+            if(alsoClearTrash)
+                trash.Clear();
         }
 
         public bool ContainsItem(Item item, bool everHadItem = false)
@@ -40,5 +45,11 @@ namespace GameJam2020
             
         }
 
+        public void Init()
+        {
+            items = new List<Item>();
+            trash = new List<Item>();
+            ClearInventory();
+        }
     }
 }
