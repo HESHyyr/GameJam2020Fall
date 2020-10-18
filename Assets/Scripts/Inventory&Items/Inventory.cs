@@ -7,7 +7,7 @@ namespace GameJam2020
     public class Inventory : ScriptableObject
     {
         [SerializeField] private List<Item> items = new List<Item>();
-        private List<Item> trash = new List<Item>();
+        public List<Item> Items => items;
 
         public void AddItem(Item item)
         {
@@ -21,21 +21,11 @@ namespace GameJam2020
             if (!items.Contains(item))
                 return;
             items.Remove(item);
-            trash.Add(item);
         }
 
         public void ClearInventory()
         {
             items.Clear();
-        }
-
-        public bool ContainsItem(Item item, bool everHadItem = false)
-        {
-            if(everHadItem)
-                return items.Contains(item) || trash.Contains(item);
-            else
-                return items.Contains(item);
-            
         }
 
     }

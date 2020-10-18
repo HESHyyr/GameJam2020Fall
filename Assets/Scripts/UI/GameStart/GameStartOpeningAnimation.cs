@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using UnityEngine;
-using SpookuleleGames.Audio;
+﻿using SpookuleleGames.Audio;
 using SpookuleleGames.ServiceLocator;
+using System.Collections;
+using UnityEngine;
 
 namespace GameJam2020
 {
     public class GameStartOpeningAnimation : MonoBehaviour
     {
-        [SerializeField] private SimpleOneShot fadeSound;
+        [SerializeField] private SimplePersistentSound mainTheme;
         [SerializeField] private CanvasGroup[] groups;
 
         private void Start()
@@ -24,22 +24,29 @@ namespace GameJam2020
 
             yield return new WaitForSeconds(3f);
 
-            AudioManager audioManager = ServiceLocator.GetService<AudioManager>();
-
             float t = 0f;
             for (int i = 0; i < groups.Length; i++)
             {
+                
                 t = 0f;
-                audioManager.PlayOneShot(fadeSound);
                 while (t < 1.1f)
                 {
                     t += Time.deltaTime;
                     groups[i].alpha = t;
                     yield return null;
                 }
-
                 yield return new WaitForSeconds(3f);
             }
+
+            if(ServiceLocator.GetService<AudioManager>().TryGetPersistentSound(mainTheme, out PersistentSoundPlayer player)) {
+
+                player.FadeOut(2f);
+
+            }
+
         }
+
+
+
     }
 }

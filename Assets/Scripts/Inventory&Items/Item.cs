@@ -9,8 +9,10 @@ namespace GameJam2020
         [SerializeField, TextArea(3, 5)] private string description;
         [SerializeField] private Sprite sprite;
 
+
         public string Name => name;
         public string Description => description;
+
         public Sprite Sprite => sprite;
 
     }

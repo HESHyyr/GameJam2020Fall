@@ -42,7 +42,7 @@ namespace SpookuleleGames.Audio
             soundPlayer.Init(clip, volume, pitch);
 
             activePersistentSounds.Add(persistentSound, soundPlayer);
-            MethodDelayer.DelayMethodByPredicateAsync(() => activePersistentSounds.Remove(persistentSound), () => soundPlayer.gameObject.activeSelf == false);
+            MethodDelayer.DelayMethodByPredicateAsync(() => activePersistentSounds.Remove(persistentSound), ()=>soundPlayer.gameObject.activeSelf == false);
             return soundPlayer;
         }
 
