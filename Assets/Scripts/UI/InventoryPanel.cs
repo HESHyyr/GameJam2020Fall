@@ -11,17 +11,26 @@ public class InventoryPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [SerializeField] private float iterationWaitTime;
 
     private Transform inventoryListUI;
+    private int nextAvailableInventorySlot = 0;
 
     
     // Start is called before the first frame update
     void Start()
     {
         inventoryListUI = transform.Find("InventoryListUI");
+
+        //We need to read the inventory array and draw all images here
     }
 
     public void AddItemToInventory()
     {
+        //Change image parent to this transform
+        //
+        //inventoryListUI.GetChild(nextAvailableInventorySlot) = 
 
+
+
+        nextAvailableInventorySlot++;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -36,7 +45,7 @@ public class InventoryPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private IEnumerator ShowInventory(bool shouldDisplayInventory)
     {
-        float inventoryTransformIncreament = 600 / iterationNumber;
+        float inventoryTransformIncreament = 380 / iterationNumber;
 
         for(int i = 0; i < (int)iterationNumber; i++)
         {
