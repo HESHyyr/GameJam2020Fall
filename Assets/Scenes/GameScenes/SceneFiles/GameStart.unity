@@ -908,7 +908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72e50c567effca141822c91e4470d27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainTheme: {fileID: 11400000, guid: 537cc07d0a3f0c640a5c22f4eaccb8de, type: 2}
+  fadeSound: {fileID: 11400000, guid: a48795363799856479045dbb3a380327, type: 2}
   groups:
   - {fileID: 247847367}
   - {fileID: 334518329}
