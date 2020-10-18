@@ -9,6 +9,8 @@ namespace GameJam2020
         [SerializeField] private List<Item> items = new List<Item>();
         private List<Item> trash = new List<Item>();
 
+        public List<Item> Items => items;
+
         public void AddItem(Item item)
         {
             if(items.Contains(item))
