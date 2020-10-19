@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image blackScreenImage = default;
     [SerializeField] float speedOfFading = default;
 
+    [SerializeField] private string dialogueName;
+
     //Varaiable for testing purpose
     [SerializeField] private string[] testDialogueArray = default;
 
@@ -34,7 +36,7 @@ public class UIManager : MonoBehaviour
     {
         dialoguePanel.SetActive(true);
         int RN = Random.Range(0, 10);
-        dialoguePanelScript.StartDialogue("Random dude " + RN, testDialogueArray);
+        dialoguePanelScript.StartDialogue(dialogueName, testDialogueArray);
     }
 
     IEnumerator waitForBlackScreen()

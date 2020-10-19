@@ -48,6 +48,11 @@ namespace GameJam2020
         public void TryDoor(EnvironmentGameState destination)
         {
 
+            if(InventoryPanel.CurrentlySelectedItem() != null)
+            {
+                ActionLogManager.LogActionStatic("It wasn't necessary.");
+                return;
+            }
 
             for(int i = 0; i < doors.Count; i++)
             {

@@ -5768,7 +5768,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Follow the Bunny
+  m_text: Down the Rabbit Hole
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e8d47af00bfafe9459045da087892635, type: 2}
   m_sharedMaterial: {fileID: 6827164558116409255, guid: e8d47af00bfafe9459045da087892635,
@@ -5796,8 +5796,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 150
-  m_fontSizeBase: 150
+  m_fontSize: 125
+  m_fontSizeBase: 125
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

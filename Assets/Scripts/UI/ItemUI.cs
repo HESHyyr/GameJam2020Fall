@@ -9,6 +9,8 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler
     private InventoryPanel InventoryUIManager;
     private int currentItemIndex;
 
+    public static ItemUI selectedItem;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,16 +18,11 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler
         currentItemIndex = transform.GetSiblingIndex();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         if(pointerEventData.button == PointerEventData.InputButton.Left)
         {
+            selectedItem = this;
             if (GetComponent<Image>().sprite != null)
             {
                 int currentItemIndex = transform.GetSiblingIndex();
@@ -45,21 +42,11 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler
                 }
             }
         }
-        else if(pointerEventData.button == PointerEventData.InputButton.Right)
-        {
-            if(InventoryUIManager.selectedItemIndex == currentItemIndex)
-            {
-                InventoryUIManager.selectedItemIndex = -1;
-                //Calculate the image's original position
-                transform.parent = InventoryUIManager.inventoryListUI;
-                transform.SetSiblingIndex(currentItemIndex);
-                Debug.Log(transform.GetSiblingIndex());
-                transform.GetComponent<RectTransform>().localPosition = new Vector2(-140.5f + 40 * transform.GetSiblingIndex(), 0.0f);
-            }
-        }
 
 
     }
+
+    
 
     public void SelectCurrentImage()
     {

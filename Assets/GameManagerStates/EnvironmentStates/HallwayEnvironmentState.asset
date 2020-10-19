@@ -14,11 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   environmentScene: {fileID: 11400000, guid: 14d1f9efae40422409269c71171e3e6d, type: 2}
   doors:
-  - requiredItem: {fileID: 0}
-    travelSound: {fileID: 11400000, guid: 52a28811db9a50548bee0cdfc1bdbaca, type: 2}
+  - travelSound: {fileID: 11400000, guid: 52a28811db9a50548bee0cdfc1bdbaca, type: 2}
     destinationEnvironment: {fileID: 11400000, guid: 439238fc601e35a47b45164866825f2d,
       type: 2}
-  - requiredItem: {fileID: 0}
-    travelSound: {fileID: 11400000, guid: 52a28811db9a50548bee0cdfc1bdbaca, type: 2}
+  - travelSound: {fileID: 11400000, guid: 52a28811db9a50548bee0cdfc1bdbaca, type: 2}
     destinationEnvironment: {fileID: 11400000, guid: 2d952dd8c46a7444fab49e37000acdf2,
       type: 2}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GameJam2020 {
     public class ItemPickup : MonoBehaviour
@@ -9,8 +10,11 @@ namespace GameJam2020 {
         [SerializeField] Inventory playerInventory;
         [SerializeField] Item item;
 
+        
+
         void Start()
         {
+
             if (playerInventory.ContainsItem(item, true))
             {
                 Destroy(gameObject);

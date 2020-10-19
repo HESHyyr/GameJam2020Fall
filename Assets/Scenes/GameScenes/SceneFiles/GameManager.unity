@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 11400000, guid: 9ec705e46328a514f894f1931e27ab79, type: 2}
   gameStart: {fileID: 11400000, guid: 6d8226ec139a5d348a6afdce7a061bd4, type: 2}
+  gameEnd: {fileID: 11400000, guid: e835bd2196ef5fc4896293b5da41f46e, type: 2}
   startingAreaEnvironment: {fileID: 11400000, guid: 439238fc601e35a47b45164866825f2d,
     type: 2}
 --- !u!4 &27420222

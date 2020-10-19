@@ -17,7 +17,28 @@ public class InventoryPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [HideInInspector] public int selectedItemIndex;
     [HideInInspector] public Transform selectedItemImage;
 
-    
+    private static InventoryPanel INSTANCE;
+
+    public static Item CurrentlySelectedItem()
+    {
+        if(INSTANCE.selectedItemIndex < 0)
+        {
+            return null;
+        } else
+        {
+            return INSTANCE.inventory.Items[INSTANCE.selectedItemIndex];
+        }
+    }
+
+    public static void UnEquipStatic() { INSTANCE.UnEquip(); }
+
+    private void Awake()
+    {
+        INSTANCE = this;
+    }
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,37 +50,75 @@ public class InventoryPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
         //We need to reset to -1 everytime we drop an item
         selectedItemIndex = -1;
+
+        inventory.OnItemAdded += AddItemToInventory;
+        inventory.OnItemRemoved += RemoveItemFromInventory;
+
+    }
+
+    
+    void OnDestroy()
+    {
+        inventory.OnItemAdded -= AddItemToInventory;
+        inventory.OnItemRemoved -= RemoveItemFromInventory;
     }
 
     void Update()
     {
-        if(selectedItemImage != null && selectedItemIndex >= 0)
-            selectedItemImage.position = Input.mousePosition;
+        if(Input.GetButtonDown("Fire2"))
+        {
+            UnEquip();
+        }
+
+        if (selectedItemImage != null && selectedItemIndex >= 0)
+            selectedItemImage.position = Input.mousePosition - (Vector3.one * 64f);
     }
 
     public void AddItemToInventory(Item item)
     {
-        inventory.AddItem(item);
         ChangeImage(inventory.Items.Count - 1, inventory.Items[inventory.Items.Count - 1].Sprite);
     }
 
-    public void RemoveItemFromInventory(int removeItemIndex)
+    public void RemoveItemFromInventory(Item item)
     {
+        int removeItemIndex = inventory.Items.IndexOf(item);
+
+        if (removeItemIndex == -1) return;
+
         //We need to shift the UI to 1 unit left
-        for(int i = removeItemIndex; i + 1 < inventory.Items.Count; i++)
+        for (int i = removeItemIndex; i + 1 < inventory.Items.Count; i++)
             ChangeImage(i, inventory.Items[i + 1].Sprite);
 
-        inventory.RemoveItem(inventory.Items[removeItemIndex]);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        StartCoroutine(ShowInventory(true));
+        if (selectedItemImage != null && selectedItemIndex >= 0) { return; }
+            StartCoroutine(ShowInventory(true));
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        StartCoroutine(ShowInventory(false));
+        if (selectedItemImage != null && selectedItemIndex >= 0) { return; }
+            StartCoroutine(ShowInventory(false));
+    }
+
+    void UnEquip()
+    {
+        if (selectedItemIndex >= 0)
+        {
+            int currentItemIndex = selectedItemIndex;
+            selectedItemIndex = -1;
+
+            Transform itemT = ItemUI.selectedItem.transform;
+
+            //Calculate the image's original position
+            itemT.parent = inventoryListUI;
+            itemT.SetSiblingIndex(currentItemIndex);
+            itemT.GetComponent<RectTransform>().localPosition = new Vector2(-140.5f + 40 * itemT.GetSiblingIndex(), 0.0f);
+
+            StartCoroutine(ShowInventory(false));
+        }
     }
 
     private IEnumerator ShowInventory(bool shouldDisplayInventory)

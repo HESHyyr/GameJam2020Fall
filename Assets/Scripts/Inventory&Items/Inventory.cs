@@ -1,4 +1,5 @@
 ﻿using SpookuleleGames.ServiceLocator;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ namespace GameJam2020
         [SerializeField] private List<Item> items = new List<Item>();
         private List<Item> trash = new List<Item>();
 
+        public event Action<Item> OnItemAdded = delegate { };
+        public event Action<Item> OnItemRemoved = delegate { };
+
         public List<Item> Items => items;
 
         public int Priority => 0;
@@ -19,6 +23,7 @@ namespace GameJam2020
             if(items.Contains(item))
                 return;
             items.Add(item);
+            OnItemAdded(item);
         }
 
         public void RemoveItem(Item item)
@@ -27,6 +32,7 @@ namespace GameJam2020
                 return;
             items.Remove(item);
             trash.Add(item);
+            OnItemRemoved(item);
         }
 
         public void ClearInventory(bool alsoClearTrash = true)

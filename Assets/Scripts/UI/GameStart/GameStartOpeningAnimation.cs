@@ -7,12 +7,14 @@ namespace GameJam2020
 {
     public class GameStartOpeningAnimation : MonoBehaviour
     {
+        [SerializeField] private SimplePersistentSound gameMusic;
         [SerializeField] private SimpleOneShot fadeSound;
         [SerializeField] private CanvasGroup[] groups;
 
         private void Start()
         {
             StartCoroutine(Opener());
+            ServiceLocator.GetService<AudioManager>().PlayPersistentSound(gameMusic);
         }
 
         IEnumerator Opener()

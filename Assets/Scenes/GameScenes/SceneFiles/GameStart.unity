@@ -402,8 +402,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: We at <i>Follow the Rabbit</i> co. are commited to a safe, enjoyable experience
-    for all of our visitors.
+  m_text: We at <i>Down the Rabbit Hole</i> co. are commited to a safe, enjoyable
+    experience for all of our visitors.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2ecf8a801f3cee140b766881ead175c1, type: 2}
   m_sharedMaterial: {fileID: -5207562700767304099, guid: 2ecf8a801f3cee140b766881ead175c1,
@@ -908,6 +908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72e50c567effca141822c91e4470d27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameMusic: {fileID: 11400000, guid: 4f35a45331dd34c4e8d0ff8d1febafeb, type: 2}
   fadeSound: {fileID: 11400000, guid: a48795363799856479045dbb3a380327, type: 2}
   groups:
   - {fileID: 247847367}

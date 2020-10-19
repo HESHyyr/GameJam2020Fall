@@ -14,12 +14,12 @@ namespace SpookuleleGames.Audio
         [SerializeField] private ObjectPool oneShotPool;
         [SerializeField] private ObjectPool persistentSoundPool;
 
-        private Dictionary<IPersistentSound, PersistentSoundPlayer> activePersistentSounds;
+        private List<PersistentSoundPlayer> players;
 
         public void Init() {
             oneShotPool.Init();
             persistentSoundPool.Init();
-            activePersistentSounds = new Dictionary<IPersistentSound, PersistentSoundPlayer>();
+            players = new List<PersistentSoundPlayer>();
         }
 
         public void PlayOneShot(IOneShot oneShot)
@@ -41,13 +41,18 @@ namespace SpookuleleGames.Audio
             float pitch = Random.Range(persistentSound.MinPitch, persistentSound.MaxPitch);
             soundPlayer.Init(clip, volume, pitch);
 
-            activePersistentSounds.Add(persistentSound, soundPlayer);
-            MethodDelayer.DelayMethodByPredicateAsync(() => activePersistentSounds.Remove(persistentSound), () => soundPlayer.gameObject.activeSelf == false);
+            players.Add(soundPlayer);
+            MethodDelayer.DelayMethodByPredicateAsync(() => players.Remove(soundPlayer), () => soundPlayer.gameObject.activeSelf == false);
             return soundPlayer;
         }
 
-        public bool TryGetPersistentSound(IPersistentSound persistentSound, out PersistentSoundPlayer player)
-        => activePersistentSounds.TryGetValue(persistentSound, out player);
+        public void PurgePersistentSound()
+        {
+            foreach(PersistentSoundPlayer player in players)
+            {
+                Destroy(player.gameObject);
+            }
+        }
         
     }
 }
